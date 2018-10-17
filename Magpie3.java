@@ -25,25 +25,40 @@ public class Magpie3 {
 	 *            the user statement
 	 * @return a response based on the rules given
 	 */
-	public String getResponse(String statement) {
-		String response = "";
-		if (statement.length() == 0)
-		{
-			response = "Say something, please.";
-		}
-		else if (findKeyword(statement, "no") >= 0) {
-			response = "Why so negative?";
-		} else if (findKeyword(statement, "mother") >= 0
-				   || findKeyword(statement, "father") >= 0
-				   || findKeyword(statement, "sister") >= 0
-				   || findKeyword(statement, "brother") >= 0)
-		{
-			response = "Tell me more about your family.";
-		} else {
-			response = getRandomResponse();
-		}
-		return response;
-	}
+	 public String getResponse(String statement) {
+ 		String response = "";
+ 		if (findKeyword(statement, "no") >= 0) {
+ 			response = "Why so negative?";
+ 		} else if (findKeyword(statement, "mother") >= 0
+ 				   || findKeyword(statement, "father") >= 0
+ 				   || findKeyword(statement, "sister") >= 0
+ 				   || findKeyword(statement, "brother") >= 0)
+ 		{
+ 			response = "Tell me more about your family.";
+ 		}
+ 		else if
+ 			(findKeyword(statement, "dog") >= 0
+ 			|| findKeyword(statement, "cat") >= 0
+ 			|| findKeyword(statement, "bird") >= 0)
+
+ 			{
+ 				response = "Tell me more about your pets.";
+ 			}
+ 			else if
+ 			(findKeyword(statement, "Mr. Smith") >= 0)
+ 			{
+ 				response = "He sounds like a good teahcer.";
+ 			} else if
+ 			(statement.trim().length() == 0)
+ 			{
+ 				response = "Hey kid, try typing something.";
+ 			}
+
+ 		else {
+ 			response = getRandomResponse();
+ 		}
+ 		return response;
+ 	}
 
 	/**
 	 * Search for one word in phrase. The search is not case
